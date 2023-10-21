@@ -1,6 +1,7 @@
 "use client";
 
 import { ComponentProps } from "react";
+//@ts-expect-error
 import { experimental_useFormStatus as useFormStatus } from "react-dom";
 
 type FormSubmitButtonProps = {
