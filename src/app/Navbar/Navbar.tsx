@@ -26,13 +26,13 @@ export default async function Navbar() {
     <div className="bg-base-100">
       <div className="navbar m-auto max-w-7xl flex-col gap-2 sm:flex-row">
         <div className="flex-1">
-          <Link href={"/"} className="text-xl btn btn-ghost normal-case">
+          <Link href={"/"} className="btn btn-ghost text-xl normal-case">
             <Image src={logo} height={40} width={40} alt="flowmazon" />
-            Flowmazon
+            CT648
           </Link>
         </div>
         <div className="flex-none gap-2">
-          <form action={searchProducts}>
+          {/* <form action={searchProducts}>
             <div className="form-control">
               <input
                 type="text"
@@ -41,8 +41,8 @@ export default async function Navbar() {
                 className="input input-bordered w-full min-w-[100px]"
               />
             </div>
-          </form>
-          <ShoppingCartButton cart={cart} />
+          </form> */}
+          {/* <ShoppingCartButton cart={cart} /> */}
           <UserMenuButton session={session} />
         </div>
       </div>

@@ -29,7 +29,7 @@ export default async function Home({
   });
   return (
     <div className="flex flex-col items-center">
-      {currentPage === 1 && (
+      {/* {currentPage === 1 && (
         <div className="hero rounded-xl bg-base-200">
           <div className="hero-content flex-col lg:flex-row">
             <Image
@@ -60,7 +60,18 @@ export default async function Home({
       </div>
       {totalPages > 1 && (
         <PaginationBar currentPage={currentPage} totalPage={totalPages} />
-      )}
+      )} */}
+      <div>
+        ชื่อ: ณัฐทรงพล ธงทองทิพย์ <br />
+        name: Natsongpol Tongthonghip <br />
+        Student ID: 65130495 <br />
+        <a href="/research" className="btn btn-square btn-primary w-full">
+          RESEARCH
+        </a>
+        <a href="/login" className="btn btn-square btn-primary my-2 w-full">
+          LOGIN LOGS
+        </a>
+      </div>
     </div>
   );
 }

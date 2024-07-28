@@ -7,6 +7,9 @@ import { NextAuthOptions } from "next-auth";
 import { Adapter } from "next-auth/adapters";
 import NextAuth from "next-auth/next";
 import GoogleProvider from "next-auth/providers/google";
+import { sendLineNotify } from "../../../../lib/lineNotify";
+import { sendEmailNotify } from "../../../../lib/lineNotify";
+import UAParser from "ua-parser-js";
 
 export const authOptions: NextAuthOptions = {
   adapter: PrismaAdapter(prisma as PrismaClient) as Adapter,
@@ -21,6 +24,22 @@ export const authOptions: NextAuthOptions = {
       session.user.id = user.id;
       return session;
     },
+    async signIn({ user, account, profile, email, credentials }) {
+      if (account?.provider === "google") {
+        await sendLineNotify(`User ${user.email} logged in`);
+        await prisma.loginLog.create({
+          data: {
+            email: user.email!,
+          },
+        });
+        await sendEmailNotify(
+          process.env.ADMIN_EMAIL!,
+          "New User Login",
+          `User ${user.email} has just logged in.`,
+        );
+      }
+      return true;
+    },
   },
   events: {
     async signIn({ user }) {
@@ -32,4 +51,3 @@ export const authOptions: NextAuthOptions = {
 const handler = NextAuth(authOptions);
 
 export { handler as GET, handler as POST };
- 

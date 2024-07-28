@@ -95,3 +95,11 @@ model VerificationToken {
   @@unique([identifier, token])
   @@map("verificationtokens")
 }
+
+model LoginLog {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  email     String
+  timestamp DateTime @default(now())
+
+  @@map("loginlogs")
+}
